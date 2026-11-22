@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Language-specific typography & line-height */
+  :lang(ja) {
+    font-family: var(--font-noto-sans-jp), -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.8;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-break: strict;
+  }
+
+  :lang(ja) .hero-headline {
+    line-height: 1.35 !important;
+    letter-spacing: 0.01em !important;
+    word-break: keep-all !important;
+    line-break: strict !important;
+    font-feature-settings: "palt" 1 !important;
+  }
+
+  :lang(vi) {
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.65;
+  }
+
+  :lang(vi) .hero-headline {
+    line-height: 1.22 !important;
+    letter-spacing: 0 !important;
+  }
+
+  :lang(en) {
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.65;
+  }
+
+  :lang(en) .hero-headline {
+    line-height: 1.12 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #060e1a;
+    color: #1e293b;
+    overflow-x: hidden;
+  }
+
+  /* Universal luxury gold focus ring for keyboard accessibility */
+  *:focus-visible {
+    outline: 2px solid #D4AF37 !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Section anchor scroll offset to prevent fixed header overlap */
+  section[id] {
+    scroll-margin-top: 5.5rem; /* 88px */
+  }
+  @media (min-width: 640px) {
+    section[id] {
+      scroll-margin-top: 6.5rem; /* 104px */
+    }
+  }
+  @media (min-width: 1024px) {
+    section[id] {
+      scroll-margin-top: 7rem; /* 112px */
+    }
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Subtle architectural patterns and textures */
+.hero-pattern {
+  background-color: #060e1a;
+  background-image: 
+    radial-gradient(at 85% 15%, rgba(30, 65, 107, 0.75) 0px, transparent 55%),
+    radial-gradient(at 15% 85%, rgba(212, 175, 55, 0.16) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(15, 37, 64, 0.6) 0px, transparent 65%),
+    linear-gradient(135deg, rgba(6, 14, 26, 0.98) 0%, rgba(11, 25, 44, 0.92) 100%);
+}
+
+.grid-overlay {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+/* Luxury film grain using inline SVG data URI */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Luxury gold accent divider */
+.gold-line-accent {
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.6) 50%, transparent 100%);
+}
+
+.gold-divider {
+  height: 3px;
+  width: 56px;
+  background: linear-gradient(90deg, #a88440 0%, #c5a059 50%, #d4af37 100%);
+  border-radius: 9999px;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fdf7e7 0%, #d4af37 40%, #c5a059 75%, #a88440 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button Sheen Sweep Effect */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: rotate(30deg);
+  transition: none;
+}
+
+.btn-sheen:hover::after {
+  left: 120%;
+  transition: all 0.75s ease-in-out;
+}
+
+/* Top Progress Bar */
+.scroll-progress-bar {
+  transform-origin: 0%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #060e1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e416b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a059;
+}
+
+/* Expanding Panels: Ken Burns starting only after transition ends (A5) */
+@keyframes kenburns-slow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-kenburns-delayed {
+  animation: kenburns-slow 12s ease-in-out infinite alternate;
+  animation-delay: 0.9s;
+}
+
+/* Cinematic Carousel utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.is-dragging {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+.is-moving {
+  pointer-events: none !important;
+}
+
